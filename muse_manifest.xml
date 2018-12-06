@@ -1,0 +1,27 @@
+<manifest alg="2" build="2018.1.0.386" opt="true" iceEnabled="true" iceMarkupVersion="2" iceEnabledOptions="link,responsive,cachebuster,textStyling" exportTarget="other" domain="simplicityiscomplex.com" resolutions="1x" timestamp="1544062611389">
+  <folder name="css">
+    <file name="site_global.css" crc="444006867"/>
+    <file name="index.css" crc="3828187406" ref="index"/>
+  </folder>
+  <folder name="assets">
+    <file name="organize.html" crc="4174370436" seo="true" mt="1544050893000"/>
+    <file name="time.html" crc="4008520500" seo="true" mt="1544050769000"/>
+    <file name="learn.html" crc="3765343848" seo="true" mt="1544050749000"/>
+    <file name="differences.html" crc="322578766" seo="true" mt="1544050726000"/>
+    <file name="context.html" crc="212769654" seo="true" mt="1544050736000"/>
+    <file name="emotion.html" crc="4004276022" seo="true" mt="1544052453000"/>
+    <file name="trust.html" crc="4145790809" seo="true" mt="1544053579000"/>
+    <file name="failure.html" crc="3997043271" seo="true" mt="1544054354000"/>
+    <file name="theone.html" crc="3859635109" seo="true" mt="1544054912000"/>
+    <file name="reduce.html" crc="4133420793" seo="true" mt="1544050759000"/>
+  </folder>
+  <folder name="scripts">
+    <file name="jquery-1.8.3.min.js" crc="209076791" ref="index"/>
+    <file name="museutils.js" crc="340535759" ref="index"/>
+    <file name="whatinput.js" crc="86476730" ref="index"/>
+    <file name="museconfig.js" crc="310584261" ref="index"/>
+    <file name="jquery.watch.js" crc="51536988" ref="index"/>
+    <file name="require.js" crc="7928878" ref="index"/>
+  </folder>
+  <file name="index.html" crc="3938831448" seo="true" mt="1544062599675" redirect="true"/>
+</manifest>

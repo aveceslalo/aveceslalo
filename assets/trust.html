@@ -1,0 +1,175 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Mexico, 2018-present</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/98/three.min.js"></script>
+		<script src="vendor/three.js/Detector.js"></script>
+		<!-- https://github.com/mrdoob/stats.js -->
+		<script src="vendor/three.js/Stats.js"></script>
+
+		<script src="vendor/threex/THREEx.screenshot.js"></script>
+		<script src="vendor/threex/THREEx.FullScreen.js"></script>
+		<script src="vendor/threex/THREEx.WindowResize.js"></script>
+		<script src="vendor/threex.dragpancontrols.js"></script>
+
+		<link  href="css/trust.css" rel="stylesheet"/>
+	</head>
+<body>
+	<div id="info">
+				<div class="top">
+		<h1>8. Trust</h1>
+	</div>
+			<div id="desc">
+					<div class="summary">
+							<h2>Mexico, 2018 - present</h2>
+					</div>
+				</div>
+			<div id="more">
+					<div class="instr">
+							<h3>  "In contrast to the trusting relationship with a Master,</p>the power of undo results in a feeling of simplicity </p>that is rooted in not having to care at all."</h3>
+								<h3> –John Maeda </h3>
+					</div>
+					<div class="puto">
+							<h4> Mr. López Obrador’s victory puts a leftist leader at the helm </p>of Latin America’s second-largest economy for the first time </p>in decades, a prospect that has filled millions of Mexicans </p>with hope and the nation’s elites with trepidation.</h4>
+					</div>
+			</div>
+	</div>
+	<!-- three.js container -->
+    	<div id="container"></div>
+	<!-- info on screen display -->
+	<div id="info">
+		<div class="top">
+
+		</div>
+		<div class="bottom" id="inlineDoc" >
+
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var stats, scene, renderer;
+		var camera, cameraControl;
+		var  cube, cube2, cube3;
+
+
+		if( !init() )	animate();
+
+		// init the scene
+		function init(){
+
+			if( Detector.webgl ){
+				renderer = new THREE.WebGLRenderer({
+					antialias		: true,	// to get smoother output
+					preserveDrawingBuffer	: true	// to allow screenshot
+				});
+				//renderer.setClearColorHex( 0xBBBBBB, 1 );
+			// uncomment if webgl is required
+			//}else{
+			//	Detector.addGetWebGLMessage();
+			//	return true;
+			}else{
+				renderer	= new THREE.CanvasRenderer();
+			}
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			renderer.setClearColor( 0xffffff, 1);
+			document.getElementById('container').appendChild(renderer.domElement);
+
+			// add Stats.js - https://github.com/mrdoob/stats.js
+			stats = new Stats();
+			stats.domElement.style.position	= 'absolute';
+			stats.domElement.style.bottom	= '0px';
+			document.body.appendChild( stats.domElement );
+
+			// create a scene
+			scene = new THREE.Scene();
+
+			// put a camera in the scene
+			camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 1, 10000,2 );
+			camera.position.set(0, 0, 8);
+			scene.add(camera);
+
+			// create a camera contol
+			//cameraControls	= new THREEx.DragPanControls(camera)
+
+			// transparently support window resize
+			THREEx.WindowResize.bind(renderer, camera);
+			// allow 'p' to make screenshot
+			THREEx.Screenshot.bindKey(renderer);
+			// allow 'f' to go fullscreen where this feature is supported
+			if( THREEx.FullScreen.available() ){
+				THREEx.FullScreen.bindKey();
+				document.getElementById('inlineDoc').innerHTML	+= "";
+			}
+
+			// here you add your objects
+			// - you will most likely replace this part by your own
+
+
+
+			var boxGeometry = new THREE.BoxGeometry(2,2,2);
+			var boxMaterial = new THREE.MeshPhongMaterial( { color: "rgb(255,0,0)", specular: "rgb(255,0,30)", emissive: "rgb(255,0,0)", shininess: 1, opacity: 0.9, transparent: true } ) ;
+			cube = new THREE.Mesh(boxGeometry, boxMaterial);
+			cube.position.set(0,0.2,3);
+			scene.add(cube);
+
+			var boxGeometry3 = new THREE.SphereGeometry(.1,.1,40);
+			var boxMaterial3 = new THREE.MeshPhongMaterial( { color: "rgb(150,150,0)", specular: "rgb(150,150,0)", emissive: "rgb(150,150,0)", shininess: 1, opacity: 0.9, transparent: true } ) ;
+			cube3 = new THREE.Mesh(boxGeometry3, boxMaterial3);
+			cube3.position.set(0,0.2,3);
+			scene.add(cube3);
+
+			var boxGeometry2 = new THREE.BoxGeometry(2,2,2);
+			var boxMaterial2 = new THREE.MeshPhongMaterial( { color: "rgb(0,255,100)", specular: "rgb(0,0,100)", emissive: "rgb(0,40,10)", shininess: 1, opacity: 0.9, transparent: true } ) ;
+			cube2 = new THREE.Mesh(boxGeometry2, boxMaterial2);
+			cube2.position.set(0,0.2,3);
+			scene.add(cube2);
+
+			for(var i = 0; i<cube.geometry.vertices.length; i++){
+				cube.geometry.vertices[i].x = Math.random();
+				cube2.geometry.vertices[i].x = -Math.random();
+
+			}
+
+
+
+			var light = new THREE.PointLight("rgb(200,150,0)",1,300);
+			light.position.set(50,50,50);
+			scene.add(light);
+		}
+
+		// animation loop
+		function animate() {
+
+
+
+			cube.rotation.y += 0.02;
+			cube2.rotation.y += 0.02;
+
+			// loop on request animation loop
+			// - it has to be at the begining of the function
+			// - see details at http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+			requestAnimationFrame( animate );
+
+			// do the render
+			render();
+
+			// update stats
+			stats.update();
+		}
+
+		// render the scene
+		function render() {
+
+			// update camera controls
+			//cameraControls.update();
+
+			// actually render the scene
+			renderer.render( scene, camera );
+		}
+	</script>
+</body>
+</html>

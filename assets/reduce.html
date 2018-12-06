@@ -1,0 +1,206 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Iraq, 2003-2011</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/98/three.min.js"></script>
+		<script src="vendor/three.js/Detector.js"></script>
+		<!-- https://github.com/mrdoob/stats.js -->
+		<script src="vendor/three.js/Stats.js"></script>
+		<link rel="stylesheet" href="https://use.typekit.net/xfy0bls.css">
+
+		<script src="vendor/threex/THREEx.screenshot.js"></script>
+		<script src="vendor/threex/THREEx.FullScreen.js"></script>
+		<script src="vendor/threex/THREEx.WindowResize.js"></script>
+		<script src="vendor/threex.dragpancontrols.js"></script>
+
+		<link  href="css/reduce.css" rel="stylesheet"/>
+
+	</head>
+<body>
+	<div id="info">
+        <div class="top">
+	  <h1>1. Reduce</h1>
+	</div>
+			<div id="desc">
+					<div class="summary">
+							<h2>Iraq, 2003-2011</h2>
+					</div>
+				</div>
+			<div id="more">
+					<div class="instr">
+							<h3>  "The problem is one of choosing what deserves to live,<p>at the sacrifice of what deserves to die."</h3>
+								<h3> –John Maeda </h3> 
+					</div>
+					<div class="puto">
+							<h4>  Iraq suffered a lengthy civil war in which over 100,000 civilians were killed, <p>tens of thousands of combatants died, and millions were temporarily<p>—and sometimes permanently—displaced.</h4>
+					</div>
+			</div>
+	</div>
+	<!-- three.js container -->
+    	<div id="container"></div>
+	<!-- info on screen display -->
+	<div id="info">
+		<div class="top">
+
+		</div>
+		<div class="bottom" id="inlineDoc" >
+
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var stats, scene, renderer;
+
+		var camera, cameraControl;
+		var sphere, cube;
+		var contenedorEsf;
+		var px=[];
+		var py=[];
+		var pz=[];
+		if( !init() )	animate();
+
+
+
+		// init the scene
+		function init(){
+
+		contenedorEsf = new THREE.Object3D();
+			if( Detector.webgl ){
+
+				renderer = new THREE.WebGLRenderer({
+					antialias		: true,	// to get smoother output
+					preserveDrawingBuffer	: true	// to allow screenshot
+
+				});
+
+			// uncomment if webgl is required
+			//}else{
+			//	Detector.addGetWebGLMessage();
+			//	return true;
+			}else{
+				renderer	= new THREE.CanvasRenderer();
+
+			}
+			renderer.setSize( window.innerWidth, window.innerHeight );
+			renderer.setClearColor( 0xffffff, 1);
+			document.getElementById('container').appendChild(renderer.domElement);
+
+			// add Stats.js - https://github.com/mrdoob/stats.js
+			stats = new Stats();
+			stats.domElement.style.position	= 'absolute';
+			stats.domElement.style.bottom	= '0px';
+			document.body.appendChild( stats.domElement );
+
+			// create a scene
+			scene = new THREE.Scene();
+
+			// put a camera in the scene
+			camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 4.2, 1000 );
+			camera.position.set(0, .3, 20);
+			scene.add(camera);
+
+			// create a camera contol
+			//cameraControls	= new THREEx.DragPanControls(camera)
+
+			// transparently support window resize
+			THREEx.WindowResize.bind(renderer, camera);
+			// allow 'p' to make screenshot
+			THREEx.Screenshot.bindKey(renderer);
+			// allow 'f' to go fullscreen where this feature is supported
+			if( THREEx.FullScreen.available() ){
+				THREEx.FullScreen.bindKey();
+				document.getElementById('inlineDoc').innerHTML	+= "";
+			}
+
+			// here you add your objects
+			// - you will most likely replace this part by your own
+			scene.add(contenedorEsf);
+
+			for(var i = 0; i<1000; i++){
+			var geometry  	= new THREE.BoxGeometry(.1,.1,0.01);
+
+			var material	= new THREE.MeshLambertMaterial({color:"rgb(255,255,255)"});
+			sphere	= new THREE.Mesh( geometry, material );
+			sphere.position.set((Math.random()-0.5)*5,(Math.random()-0.5)*5,(Math.random()-0.5))*0;
+			px.push(sphere.position.x);
+			py.push(sphere.position.y);
+			pz.push(sphere.position.z);
+
+			contenedorEsf.add(sphere);
+		//scene.add( sphere );
+			//console.log(sphere);
+
+
+}
+
+console.log(contenedorEsf.children);
+			/*for(var i = 0; i<sphere.geometry.vertices.length; i++){
+				sphere.geometry.vertices[i].x = Math.random();
+			}*/
+
+			var light = new THREE.PointLight("rgb(0,0,255)",1,1200,1);
+			light.position.set(15,15,50);
+			scene.add(light);
+
+			var light2 = new THREE.PointLight("rgb(255,0,40)",1,3000,2);
+			light.position.set(50,15,50);
+			scene.add(light2);
+
+			var light3 = new THREE.PointLight("rgb(255,255,255)",1,100,2);
+			light.position.set(50,50,50);
+			scene.add(light3);
+
+		}//init
+
+var contador = 1;
+		// animation loop
+		function animate() {
+
+			//sphere.rotation.y += 1;
+			//sphere.rotation.z += 10;
+			//contenedorEsf.rotation.y += 0.01;
+
+			for(var i=0; i< contenedorEsf.children.length; i++){
+				if( i > ( contador - 1 )){
+			contenedorEsf.children[i].position.x = px[ i - contador ];
+			contenedorEsf.children[i].position.y = py[ i - contador ];
+			contenedorEsf.children[i].position.z = pz[ i - 1 ];
+		}
+	}
+		contador++;
+
+		if( contador == 1002 ){
+			contador = 0;
+		}
+
+
+
+		//	contenedorEsf.children[i].position = contenedorEsf.children[i+1].position
+			// loop on request animation loop
+			// - it has to be at the begining of the function
+			// - see details at http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+			requestAnimationFrame( animate );
+
+			// do the render
+			render();
+
+			// update stats
+			stats.update();
+		}
+
+		// render the scene
+		function render() {
+
+			// update camera controls
+			//cameraControls.update();
+
+			// actually render the scene
+			renderer.render( scene, camera );
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+body {
+	padding		: 0;
+	margin		: 0;
+  	background-color: black;
+  	overflow: hidden;
+}
+
+@font-face {
+	font-family: caslon;
+	src: (css/fonts/ACaslonPro-Regular.otf);
+}
+
+@font-face {
+	font-family: helvetica;
+	src: (css/fonts/HelveticaNeueLTStd-Roman.otf);
+}
+
+@font-face {
+	font-family: helvetica bold;
+	src: (css/fonts/HelveticaNeueLTStd-Bd.otf);
+}
+
+h4 {
+	font-family: caslon;
+	color: white;
+	font-size: 1.2vw;
+	display: inline-block;
+	margin-left: 0px;
+	margin-top: 20px;
+	font-weight: lighter;
+	margin-bottom: 5px;
+}
+
+h2 {
+	font-family: helvetica;
+	font-size: 1.5vw;
+	font-weight: normal;
+}
+
+a {
+	color: white;
+	text-decoration: none;
+}
+
+a:hover {
+	color: white;
+    text-decoration: underline;
+}
+
+#header {
+	margin-top: 20px;
+	margin-bottom: 0%;
+	margin-left: 5%;
+	padding: 0;
+	display: inline-block;
+}
+
+#link {
+	margin-left: 10%;
+}
+
+#info .top {
+	position	: absolute;
+	top		: 5%;
+	margin-left: 2.2%;
+	width		: 100%;
+	padding		: 5px;
+	text-align	: left;
+}
+
+#info h1 {
+	color: black;
+	font-family: gill-sans-nova;
+	font-weight: 900;
+	font-size: 3.5vw;
+}
+
+#desc .summary {
+	position	: absolute;
+	top		: 92%;
+	margin-left: 45%;
+	width		: 100%;
+	padding		: 5px;
+	text-align	: left;
+}
+
+.summary h2 {
+	color: black;
+	font-family: gill-sans-nova;
+	font-size: 1vw;
+	font-weight: 400;
+}
+
+#more .instr {
+	position	: absolute;
+	top		: 18%;
+	margin-left: 5%;
+	width		: 100%;
+	padding		: 5px;
+	text-align	: left;
+}
+
+.instr h3 {
+	color: black;
+	font-family: gill-sans-nova;
+	font-size: 1.3vw;
+	font-weight: 500;
+	font-style: normal;
+	line-height: 1;
+}
+
+#more .puto {
+	position	: absolute;
+	top		: 40%;
+	margin-left: 5%;
+	width		: 100%;
+	padding		: 5px;
+	text-align	: left;
+}
+
+.puto h4 {
+	color: black;
+	font-family: gill-sans-nova;
+	font-size: 1vw;
+	font-weight: 300;
+	font-style: italic;
+	line-height: .7;
+}
